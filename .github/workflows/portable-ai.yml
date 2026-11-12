@@ -22,3 +22,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Test macOS selector (8/16/32 GB)
         run: /bin/sh portable/tests/test_macos.sh
+
+  shell-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: POSIX shell syntax and RAM selection tests
+        run: |
+          /bin/sh -n portable/scripts/start-offline.sh
+          /bin/sh portable/tests/test_macos.sh
