@@ -1,0 +1,24 @@
+name: Domaca OFFLINE - RAM model switch
+on:
+  push:
+    paths:
+      - 'portable/**'
+      - '.github/workflows/portable-ai.yml'
+  pull_request:
+    paths:
+      - 'portable/**'
+      - '.github/workflows/portable-ai.yml'
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test Windows PowerShell selector (8/16/32 GB)
+        shell: pwsh
+        run: ./portable/tests/test_windows.ps1
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test macOS selector (8/16/32 GB)
+        run: /bin/sh portable/tests/test_macos.sh
